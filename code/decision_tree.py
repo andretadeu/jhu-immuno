@@ -14,11 +14,14 @@ data['y'] = data.Immunogenicity.map({'non-immunogenic': 0, 'immunogenic': 1 })
 
 X = data[resp_cols]
 Y = data.y
-clf = tree.DecisionTreeClassifier()
 
 dummy = pd.get_dummies(data.MHC)
 
-clf.fit(dummy, Y)
+# from sklearn.externals.six import StringIO
+# f = tree.export_graphviz(clf, out_file = 'decision_tree')
 
-from sklearn.externals.six import StringIO
-f = tree.export_graphviz(clf, out_file = 'decision_tree')
+from sklearn.cross_validation import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(dummy, Y, random_state=1)
+clf = tree.DecisionTreeClassifier()
+clf.fit(X_train, y_train)
+
