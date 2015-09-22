@@ -2,3 +2,4 @@
 .Rhistory
 .RData
 data/.~lock*
+data/peptide_9_props_norm.csv
