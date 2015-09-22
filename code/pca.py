@@ -48,6 +48,10 @@ pca.fit(X_norm)
 
 print(pca.explained_variance_ratio_)
 
+X_norm.insert(0, '', X.icol(0))
+
+X_norm.to_csv('../data/aaProp20x544-norm.csv')
+
 X_new = pca.transform(X) 
 v0 = pca.transform(pca.components_[0])
 v0 /= v0[-1]
