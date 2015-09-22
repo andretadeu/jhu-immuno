@@ -6,7 +6,7 @@ from sklearn import tree
 #clf = tree.DecisionTreeClassifier()
 #clf = clf.fit(X, Y)
 
-data = pd.read_excel('/home/andre/sandbox/jhu-immuno/journal.pcbi.1003266.s001-2.XLS')
+data = pd.read_excel('/home/andre/sandbox/jhu-immuno/input/journal.pcbi.1003266.s001-2.XLS')
 
 resp_cols = [ 'MHC' ]
 
@@ -23,5 +23,20 @@ dummy = pd.get_dummies(data.MHC)
 from sklearn.cross_validation import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(dummy, Y, random_state=1)
 clf = tree.DecisionTreeClassifier()
-clf.fit(X_train, y_train)
+clf = clf.fit(X_train, y_train)
 
+pred_y = clf.predict(X_test)
+
+from sklearn.externals.six import StringIO
+with open('decision_tree.dot', 'w') as f:
+    f = tree.export_graphviz(clf, out_file = 'decision_tree')
+
+import os
+os.unlink('decision_tree.dot')
+
+dict = {}
+for el in pred_y:
+    if el in dict:
+        dict[el] += 1
+    else:
+        dict[el] = 1
