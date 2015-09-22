@@ -1,0 +1,5 @@
+install.packages("seqinr")
+library(seqinr)
+data(aaindex)
+y = sapply(aaindex,function(x) {x$D})
+write.csv(y, file="aaDataDictionary", row.names=TRUE)
