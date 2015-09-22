@@ -1,0 +1,5 @@
+install.packages("seqinr")
+library(seqinr)
+data(aaindex)
+df = as.matrix(sapply(aaindex,function(x) {x$I}))
+write.csv(df, file="aaProp20x544", row.names=TRUE)
