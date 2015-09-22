@@ -20,14 +20,10 @@ pca = PCA(n_components=100)
 len(X)
 len(list(X.columns.values))
 
-X['YANJ020101']
-
+# X['YANJ020101']
 #X['CEDJ970101']
-
 #means = X.mean()
-
 #len(means)
-
 #means
 #X
 
