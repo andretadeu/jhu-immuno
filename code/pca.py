@@ -13,7 +13,7 @@ from sklearn.preprocessing import LabelEncoder
 # import some data to play with
 
 # The iris dataset
-train    = pd.read_csv('../data/train.csv')
+train    = pd.read_csv('~/sandbox/jhu-immuno/data/aaProp20x544.csv')
 
 labelCats = ['T1_V11','T1_V12','T1_V15','T1_V16','T1_V17','T1_V4','T1_V5','T1_V6','T1_V7','T1_V8','T1_V9','T2_V11','T2_V12','T2_V13','T2_V3','T2_V5']
 trainLabel = train[labelCats].copy()
