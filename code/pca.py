@@ -6,37 +6,56 @@ Created on Thu Aug 27 20:53:12 2015
 """
 
 import pandas as pd
-from sklearn.preprocessing import LabelEncoder
-
+import numpy as np
 
 ###############################################################################
 # import some data to play with
 
 # The iris dataset
-train    = pd.read_csv('~/sandbox/jhu-immuno/data/aaProp20x544.csv')
-
-train.head()
-
-#labelCats = ['T1_V11','T1_V12','T1_V15','T1_V16','T1_V17','T1_V4','T1_V5','T1_V6','T1_V7','T1_V8','T1_V9','T2_V11','T2_V12','T2_V13','T2_V3','T2_V5']
-#trainLabel = train[labelCats].copy()
-#for label in labelCats:  
-#    lbl = LabelEncoder()
-#    trainLabel[label] = lbl.fit_transform(trainLabel[label])
-    
-#train = pd.get_dummies(train)
-
-#trainAll = pd.concat([train,trainLabel],axis=1)
+X    = pd.read_csv('../data/aaProp20x544.csv', na_values = 'NA')
 
 from sklearn.decomposition import PCA
 pca = PCA(n_components=100)
 
+len(X)
+len(list(X.columns.values))
+
+X['YANJ020101']
+
+#X['CEDJ970101']
+
+#means = X.mean()
+
+#len(means)
+
+#means
+#X
+
+X_1 = X.drop(X.columns[[0]], axis = 1)
+
+X_no_nas = X_1.fillna(means)
+X_norm = (X_no_nas - X_no_nas.mean()) / (X_no_nas.max() - X_no_nas.min())
+# X_norm = X_no_nas / X_no_nas.mean()
+#for col in range(len(list(X.columns.values))):
+    #col_avg = sum(X[col]) / len(X[col])
+    #print col_avg
+#    for row in range(len(X)):
+        
+
 #y   = train.Hazard   
 
-#X = trainAll.drop('Hazard',axis=1)
-pca.fit(X)
+pca.fit(X_norm)
 
 print(pca.explained_variance_ratio_)
 
-#X_new = pca.transform(X) 
-#v0 = pca.transform(pca.components_[0])
-#v0 /= v0[-1]
+X_new = pca.transform(X) 
+v0 = pca.transform(pca.components_[0])
+v0 /= v0[-1]
+
+def test():
+    L = [4, 'NA', 5]
+    df = pd.Series(L)
+    if (pd.isnull(df[1])):
+        print "Found null"
+    if (np.isnan(df[1])):
+        print "Found NaN"
