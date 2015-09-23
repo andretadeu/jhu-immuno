@@ -16,4 +16,5 @@ Peptides 9 props normalized - https://s3-us-west-1.amazonaws.com/jhu-dash/peptid
 
 ## Sources
 
-pics/genetic_code.png - Image from a course from Coursera 'Bioinformatics Algorithms' by Pavel Pevzner and Phillip Compeau
+github.com/hammerlab/pepdata - Source of the dataset used in this project.
+pics/genetic_code.png - Image from a course from Coursera 'Bioinformatics Algorithms' by Pavel Pevzner and Phillip Compeau.
