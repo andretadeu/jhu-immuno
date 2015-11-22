@@ -1,3 +1,6 @@
+# Disclaimer: you must have Graphviz installed to run this script
+
+import os
 import pandas as pd
 from sklearn import tree
 
@@ -28,22 +31,17 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=1)
 tree_class = tree.DecisionTreeClassifier()
 tree_class.fit(X_train, y_train)
 
-from sklearn.externals.six import StringIO
 with open('decision_tree.dot', 'w') as f:
-    f = tree.export_graphviz(tree_class, out_file = f)
+    f = tree.export_graphviz(tree_class, feature_names=list(X.columns), out_file = f)
 
-# Run dot -v -Tpdf decision_tree.dot -o decision_tree.pdf
-
-import os
+os.system('dot -v -Tpdf decision_tree.dot -o ../pics/decision_tree.pdf')
 os.unlink('decision_tree.dot')
 
 tree_class2 = tree.DecisionTreeClassifier(max_depth = 5)
 tree_class2.fit(X_train, y_train)
-from sklearn.externals.six import StringIO
+
 with open('decision_tree2.dot', 'w') as f2:
-    f = tree.export_graphviz(tree_class2, out_file = f2)
+    f = tree.export_graphviz(tree_class2, feature_names=list(X.columns), out_file = f2)
 
-# Run dot -v -Tpdf decision_tree2.dot -o decision_tree2.pdf
-
-import os
+os.system('dot -v -Tpdf decision_tree2.dot -o ../pics/decision_tree2.pdf')
 os.unlink('decision_tree2.dot')
