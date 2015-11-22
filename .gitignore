@@ -5,3 +5,4 @@ data/.~lock*
 data/peptide_9_props_norm.csv
 data/polypeptide_9_props_norm.csv
 data/polypeptide_9_props_norm.zip
+code/*.pyc
